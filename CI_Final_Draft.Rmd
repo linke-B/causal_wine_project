@@ -14,3 +14,26 @@ library(tidyverse)
 library(fixest)
 ```
 
+```{r}
+
+data <- data %>%
+  rename(i = artikpr, 
+         t = time_segm_price, 
+         Y = llitre, 
+         D = rev_all,
+         D_good = rev_all_hi,
+         D_bad = rev_all_lo,
+         D_aom = rev_ex_hi,
+         D_aom2 = rev_ex_lo,
+         D_naom = rev_nyaom_hi,
+         D_naom2 = rev_nyaom_lo,
+         wine = artikelnr, 
+         brand = artikelid,
+         advert = ma_split)%>%
+  mutate(D_adv = ifelse(advert>0,1,0))
+
+fdata <- data %>%
+  filter(dist %in% c('5','6'))
+head(fdata)
+
+```
